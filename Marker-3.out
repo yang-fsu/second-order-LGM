@@ -1,0 +1,471 @@
+Mplus VERSION 8.4
+MUTHEN & MUTHEN
+03/01/2020   9:20 AM
+
+INPUT INSTRUCTIONS
+
+
+    !This is for the Marker-3 approach. x.1 was chosen as the marker variable.
+    !The loading and the intercept of this item was fixed at .6 and .5, respectively.
+    !"item_level_data.txt" contains means and the covariance matrix shown in Table 1
+
+    DATA: FILE=item_level_data.txt;
+    NOBSERVATIONS = 1000000;! this sample size is chosen to approximate population.
+    TYPE IS COVARIANCE MEANS;
+
+    VARIABLE:
+    names =
+          x11 x12 x13 x14
+          x21 x22 x23 x24
+          x31 x32 x33 x34
+          x41 x42 x43 x44;
+    USEVARIABLES = ALL;
+
+    Analysis:
+      Estimator=ML;
+
+
+    MODEL:
+
+       eta1 by x11@.60
+               x12(lambda2)
+               x13(lambda3)
+               x14(lambda4);
+       eta2 by x21@.60
+               x22(lambda2)
+               x23(lambda3)
+               x24(lambda4);
+       eta3 by x31@.60
+               x32(lambda2)
+               x33(lambda3)
+               x34(lambda4);
+       eta4 by x41@.60
+               x42(lambda2)
+               x43(lambda3)
+               x44(lambda4);
+
+    [x11@.50];[x21@.50];[x31@.50];[x41@.50];
+    [x12](tau2);[x22](tau2);[x32](tau2);[x42](tau2);
+    [x13](tau3);[x23](tau3);[x33](tau3);[x43](tau3);
+    [x14](tau4);[x24](tau4);[x34](tau4);[x44](tau4);
+
+    [eta1-eta4@0];
+
+    level by eta1-eta4@1;
+    slope by eta1@0 eta2@1 eta3@2 eta4@3;
+    [level];[slope];
+    level with slope;
+
+    Output: tech4
+
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                     1000000
+
+Number of dependent variables                                   16
+Number of independent variables                                  0
+Number of continuous latent variables                            6
+
+Observed dependent variables
+
+  Continuous
+   X11         X12         X13         X14         X21         X22
+   X23         X24         X31         X32         X33         X34
+   X41         X42         X43         X44
+
+Continuous latent variables
+   ETA1        ETA2        ETA3        ETA4        LEVEL       SLOPE
+
+
+Estimator                                                       ML
+Information matrix                                        EXPECTED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  item_level_data.txt
+
+Input data format  FREE
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       31
+
+Loglikelihood
+
+          H0 Value                   -23423224.994
+          H1 Value                   -23423224.993
+
+Information Criteria
+
+          Akaike (AIC)                46846511.987
+          Bayesian (BIC)              46846878.268
+          Sample-Size Adjusted BIC    46846779.749
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.001
+          Degrees of Freedom                   121
+          P-Value                           1.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           1.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                       10276880.768
+          Degrees of Freedom                   120
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ ETA1     BY
+    X11                0.600      0.000    999.000    999.000
+    X12                0.600      0.000   2061.590      0.000
+    X13                0.800      0.000   2348.629      0.000
+    X14                0.800      0.000   2348.629      0.000
+
+ ETA2     BY
+    X21                0.600      0.000    999.000    999.000
+    X22                0.600      0.000   2061.590      0.000
+    X23                0.800      0.000   2348.629      0.000
+    X24                0.800      0.000   2348.629      0.000
+
+ ETA3     BY
+    X31                0.600      0.000    999.000    999.000
+    X32                0.600      0.000   2061.590      0.000
+    X33                0.800      0.000   2348.629      0.000
+    X34                0.800      0.000   2348.629      0.000
+
+ ETA4     BY
+    X41                0.600      0.000    999.000    999.000
+    X42                0.600      0.000   2061.590      0.000
+    X43                0.800      0.000   2348.629      0.000
+    X44                0.800      0.000   2348.629      0.000
+
+ LEVEL    BY
+    ETA1               1.000      0.000    999.000    999.000
+    ETA2               1.000      0.000    999.000    999.000
+    ETA3               1.000      0.000    999.000    999.000
+    ETA4               1.000      0.000    999.000    999.000
+
+ SLOPE    BY
+    ETA1               0.000      0.000    999.000    999.000
+    ETA2               1.000      0.000    999.000    999.000
+    ETA3               2.000      0.000    999.000    999.000
+    ETA4               3.000      0.000    999.000    999.000
+
+ LEVEL    WITH
+    SLOPE              0.100      0.002     59.972      0.000
+
+ Means
+    LEVEL              1.000      0.002    615.399      0.000
+    SLOPE              1.000      0.001   1275.436      0.000
+
+ Intercepts
+    X11                0.500      0.000    999.000    999.000
+    X12                0.500      0.001    564.142      0.000
+    X13                0.700      0.001    682.191      0.000
+    X14                0.700      0.001    682.191      0.000
+    X21                0.500      0.000    999.000    999.000
+    X22                0.500      0.001    564.142      0.000
+    X23                0.700      0.001    682.191      0.000
+    X24                0.700      0.001    682.191      0.000
+    X31                0.500      0.000    999.000    999.000
+    X32                0.500      0.001    564.142      0.000
+    X33                0.700      0.001    682.191      0.000
+    X34                0.700      0.001    682.191      0.000
+    X41                0.500      0.000    999.000    999.000
+    X42                0.500      0.001    564.142      0.000
+    X43                0.700      0.001    682.191      0.000
+    X44                0.700      0.001    682.191      0.000
+    ETA1               0.000      0.000    999.000    999.000
+    ETA2               0.000      0.000    999.000    999.000
+    ETA3               0.000      0.000    999.000    999.000
+    ETA4               0.000      0.000    999.000    999.000
+
+ Variances
+    LEVEL              0.500      0.004    125.597      0.000
+    SLOPE              0.100      0.001     97.105      0.000
+
+ Residual Variances
+    X11                0.600      0.001    615.497      0.000
+    X12                0.600      0.001    615.501      0.000
+    X13                0.400      0.001    451.411      0.000
+    X14                0.400      0.001    451.411      0.000
+    X21                0.500      0.001    572.138      0.000
+    X22                0.500      0.001    572.141      0.000
+    X23                0.600      0.001    505.962      0.000
+    X24                0.600      0.001    505.962      0.000
+    X31                0.700      0.001    583.515      0.000
+    X32                0.700      0.001    583.515      0.000
+    X33                0.800      0.002    513.484      0.000
+    X34                0.800      0.002    513.484      0.000
+    X41                0.800      0.001    600.712      0.000
+    X42                0.800      0.001    600.712      0.000
+    X43                0.700      0.001    486.369      0.000
+    X44                0.700      0.001    486.368      0.000
+    ETA1               2.000      0.005    391.510      0.000
+    ETA2               2.200      0.004    516.448      0.000
+    ETA3               1.700      0.004    439.056      0.000
+    ETA4               1.500      0.005    285.675      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.359E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 4 OUTPUT
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+                1.000         2.000         3.000         4.000         1.000
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+                1.000
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+ ETA1           2.500
+ ETA2           0.600         3.000
+ ETA3           0.700         1.000         3.000
+ ETA4           0.800         1.200         1.600         3.500
+ LEVEL          0.500         0.600         0.700         0.800         0.500
+ SLOPE          0.100         0.200         0.300         0.400         0.100
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+ SLOPE          0.100
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+ ETA1           1.000
+ ETA2           0.219         1.000
+ ETA3           0.256         0.333         1.000
+ ETA4           0.270         0.370         0.494         1.000
+ LEVEL          0.447         0.490         0.572         0.605         1.000
+ SLOPE          0.200         0.365         0.548         0.676         0.447
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+ SLOPE          1.000
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+                0.002         0.001         0.002         0.002         0.002
+
+
+           S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+                0.001
+
+
+           EST./S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+              615.399      1467.092      1975.645      2004.347       615.399
+
+
+           EST./S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+             1275.436
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+                0.000
+
+
+           S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+ ETA1           0.004
+ ETA2           0.003         0.005
+ ETA3           0.002         0.002         0.005
+ ETA4           0.003         0.003         0.004         0.006
+ LEVEL          0.004         0.003         0.002         0.003         0.004
+ SLOPE          0.002         0.001         0.001         0.002         0.002
+
+
+           S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+ SLOPE          0.001
+
+
+           EST./S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+ ETA1         604.426
+ ETA2         213.470       644.379
+ ETA3         298.269       427.365       613.743
+ ETA4         271.641       431.439       408.269       602.105
+ LEVEL        125.597       213.470       298.269       271.641       125.597
+ SLOPE         59.972       185.853       232.975       193.355        59.972
+
+
+           EST./S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+ SLOPE         97.105
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+ ETA1           0.000
+ ETA2           0.000         0.000
+ ETA3           0.000         0.000         0.000
+ ETA4           0.000         0.000         0.000         0.000
+ LEVEL          0.000         0.000         0.000         0.000         0.000
+ SLOPE          0.000         0.000         0.000         0.000         0.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+ SLOPE          0.000
+
+
+           S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+ ETA1           0.000
+ ETA2           0.001         0.000
+ ETA3           0.001         0.001         0.000
+ ETA4           0.001         0.001         0.001         0.000
+ LEVEL          0.002         0.001         0.002         0.003         0.000
+ SLOPE          0.004         0.003         0.002         0.002         0.011
+
+
+           S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+ SLOPE          0.000
+
+
+           EST./S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+ ETA1         999.000
+ ETA2         230.986       999.000
+ ETA3         336.368       541.990       999.000
+ ETA4         303.698       569.155       592.429       999.000
+ LEVEL        256.837       633.772       281.429       187.780       999.000
+ SLOPE         47.816       119.552       230.027       412.967        41.400
+
+
+           EST./S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+ SLOPE        999.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              ETA1          ETA2          ETA3          ETA4          LEVEL
+              ________      ________      ________      ________      ________
+ ETA1           0.000
+ ETA2           0.000         0.000
+ ETA3           0.000         0.000         0.000
+ ETA4           0.000         0.000         0.000         0.000
+ LEVEL          0.000         0.000         0.000         0.000         0.000
+ SLOPE          0.000         0.000         0.000         0.000         0.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              SLOPE
+              ________
+ SLOPE          0.000
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\yang\onedrive - florida state university\_sem submission\revision\marker-3.dgm
+
+     Beginning Time:  09:20:53
+        Ending Time:  09:20:54
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

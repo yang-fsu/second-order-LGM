@@ -1,0 +1,277 @@
+Mplus VERSION 8.4
+MUTHEN & MUTHEN
+03/01/2020   9:45 AM
+
+INPUT INSTRUCTIONS
+
+    !This is to analyze first-order LGM.
+    !"composite_mean.txt" contains means and the covariance matrix among composite scores
+    !The composite score is computed as the mean of item scores.
+
+    DATA: FILE=composite_mean.txt;
+    NOBSERVATIONS = 1000000;! this sample size is chosen to approximate population.
+    TYPE IS COVARIANCE MEANS;
+
+    VARIABLE:
+        names =x1 x2 x3 x4;
+       USEVARIABLES = ALL;
+
+    MODEL:
+
+    level by x1-x4@1;
+    slope by x1@0 x2@1 x3@2 x4@3;
+    [x1-x4@0];
+    [level];[slope];
+    level with slope;
+
+    Output: tech4
+
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                     1000000
+
+Number of dependent variables                                    4
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Continuous
+   X1          X2          X3          X4
+
+Continuous latent variables
+   LEVEL       SLOPE
+
+
+Estimator                                                       ML
+Information matrix                                        EXPECTED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  composite_mean.txt
+
+Input data format  FREE
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        9
+
+Loglikelihood
+
+          H0 Value                    -6406270.251
+          H1 Value                    -6406270.251
+
+Information Criteria
+
+          Akaike (AIC)                12812558.502
+          Bayesian (BIC)              12812664.841
+          Sample-Size Adjusted BIC    12812636.239
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000
+          Degrees of Freedom                     5
+          P-Value                           1.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                         462227.787
+          Degrees of Freedom                     6
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ LEVEL    BY
+    X1                 1.000      0.000    999.000    999.000
+    X2                 1.000      0.000    999.000    999.000
+    X3                 1.000      0.000    999.000    999.000
+    X4                 1.000      0.000    999.000    999.000
+
+ SLOPE    BY
+    X1                 0.000      0.000    999.000    999.000
+    X2                 1.000      0.000    999.000    999.000
+    X3                 2.000      0.000    999.000    999.000
+    X4                 3.000      0.000    999.000    999.000
+
+ LEVEL    WITH
+    SLOPE              0.049      0.001     59.627      0.000
+
+ Means
+    LEVEL              1.300      0.001   1283.226      0.000
+    SLOPE              0.700      0.001   1390.775      0.000
+
+ Intercepts
+    X1                 0.000      0.000    999.000    999.000
+    X2                 0.000      0.000    999.000    999.000
+    X3                 0.000      0.000    999.000    999.000
+    X4                 0.000      0.000    999.000    999.000
+
+ Variances
+    LEVEL              0.245      0.002    125.238      0.000
+    SLOPE              0.049      0.001     96.636      0.000
+
+ Residual Variances
+    X1                 1.105      0.002    453.396      0.000
+    X2                 1.215      0.002    612.684      0.000
+    X3                 1.020      0.002    558.606      0.000
+    X4                 0.922      0.003    363.662      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.461E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 4 OUTPUT
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           ESTIMATED MEANS FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+                1.300         0.700
+
+
+           ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+ LEVEL          0.245
+ SLOPE          0.049         0.049
+
+
+           ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+ LEVEL          1.000
+ SLOPE          0.447         1.000
+
+
+     ESTIMATES DERIVED FROM THE MODEL
+
+
+           S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+                0.001         0.001
+
+
+           EST./S.E. FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+             1283.226      1390.774
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED MEANS FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+                0.000         0.000
+
+
+           S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+ LEVEL          0.002
+ SLOPE          0.001         0.001
+
+
+           EST./S.E. FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+ LEVEL        125.238
+ SLOPE         59.627        96.636
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED COVARIANCE MATRIX FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+ LEVEL          0.000
+ SLOPE          0.000         0.000
+
+
+           S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+ LEVEL          0.000
+ SLOPE          0.011         0.000
+
+
+           EST./S.E. FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+ LEVEL        999.000
+ SLOPE         41.123       999.000
+
+
+           TWO-TAILED P-VALUE FOR ESTIMATED CORRELATION MATRIX FOR THE LATENT VARIABLES
+              LEVEL         SLOPE
+              ________      ________
+ LEVEL          0.000
+ SLOPE          0.000         0.000
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\yang\onedrive - florida state university\_sem submission\revision\first-order lgm_composite_mean scores.dgm
+
+     Beginning Time:  09:45:50
+        Ending Time:  09:45:51
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen
